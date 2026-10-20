@@ -15,8 +15,6 @@ label start:
     
     ## SCENE 01 — JUST ANOTHER DAY
     ## Location: Ruang Kelas — Siang Hari
-    ## SCENE 01 — JUST ANOTHER DAY
-    ## Location: Ruang Kelas — Siang Hari
     "Kehidupan mahasiswa."
     "Tugas, presentasi, revisi, dan deadline."
     "Empat hal yang rasanya tidak pernah benar-benar hilang dari kehidupan perkuliahan."

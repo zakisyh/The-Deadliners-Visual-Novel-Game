@@ -16,7 +16,6 @@ label start:
     ## SCENE 01 — JUST ANOTHER DAY
     ## Location: Ruang Kelas — Siang Hari
     "Kehidupan mahasiswa."
-    "tom pearl"
     "Tugas, presentasi, revisi, dan deadline."
     "Empat hal yang rasanya tidak pernah benar-benar hilang dari kehidupan perkuliahan."
     "Bagi sebagian orang, kuliah adalah kesempatan untuk mengejar impian."

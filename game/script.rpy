@@ -11,6 +11,7 @@ image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=
 image bg_kelas = "images/bg/kelas.jpg"
 
 label start:
+    play music "audio/BGM/insomniac.mp3" loop volume 0.5
     scene bg_kelas
     
     ## SCENE 01 — JUST ANOTHER DAY

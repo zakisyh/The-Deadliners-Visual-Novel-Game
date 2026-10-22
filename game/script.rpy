@@ -1,14 +1,99 @@
-# Define characters for the prologue
+init python:
 
-define coder = Character("The Coder", image="coder")
-define designer = Character("The Designer")
-define anomaly = Character("???")
-define dosen = Character("Dosen")
+    def atur_cahaya(event, speaker=None, **kwargs):
 
-# Image assets
+        if event != "begin":
+            return
+
+        for nama in ("coder", "designer", "anomaly", "dosen"):
+
+            if renpy.showing(nama):
+
+                if nama == speaker:
+                    renpy.show(nama, at_list=[ngomong])
+
+                else:
+                    renpy.show(nama, at_list=[diam])
+
+# Define Character ----------------------------------------------------------------------------------------------
+define coder = Character(
+    "The Coder",
+    image="coder",
+    callback=atur_cahaya,
+    cb_speaker="coder"
+)
+
+define designer = Character(
+    "The Designer",
+    callback=atur_cahaya,
+    cb_speaker="designer"
+)
+
+define anomaly = Character(
+    "???",
+    callback=atur_cahaya,
+    cb_speaker="anomaly"
+)
+
+define dosen = Character(
+    "Dosen",
+    callback=atur_cahaya,
+    cb_speaker="dosen"
+)
+
+# Image Char Assets ---------------------------------------------------------------------------------------------
 image coder = Transform("images/Karakter/The Coder/thecoder.png", zoom=0.6)
 image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=0.6)
+image dosen = Transform("images/Karakter/Dosen/dos.png", zoom=0.9)
+image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.9)
+
+# Image Background Assets ---------------------------------------------------------------------------------------
 image bg_kelas = "images/bg/kelas.jpg"
+
+# ===========================================================================================================
+# KECERAHAN KARAKTER
+# ===========================================================================================================
+transform ngomong:
+    ease 0.2 matrixcolor BrightnessMatrix(0.0)          # Karakter sedang berbicara (terang)
+
+transform diam:
+    ease 0.2 matrixcolor BrightnessMatrix(-0.35)        # Karakter tidak berbicara (gelap)
+
+# ============================================================================================================
+# ANIMASI PERGERAKAN KARAKTER
+# ============================================================================================================
+transform char_center:
+    xanchor 0.5
+    xpos 0.5
+    yalign 1.0              # Karakter muncul di tengah
+
+transform move_left:
+    ease 0.6 xpos 0.30      # Karakter Bergeser Kekiri
+
+transform move_right:
+    ease 0.6 xpos 0.70      # Karakter Bergeser Ke kanan
+
+transform back_center:
+    ease 0.6 xpos 0.5       # Karakter kembali ke tengah
+
+transform enter_right:
+    xanchor 0.5
+    xpos 1.3
+    yalign 1.0
+    ease 0.6 xpos 0.70      # Karakter masuk dari kanan ke posisi kanan
+
+transform enter_left:
+    xanchor 0.5
+    xpos -0.30
+    yalign 1.0
+    ease 0.6 xpos 0.30      # Karakter masuk dari kiri ke posisi kiri
+
+transform exit_right:
+    ease 0.6 xpos 1.3       # Karakter keluar ke kanan
+
+transform exit_right:
+    ease 0.6 xpos 1.30      # Karakter keluar ke kanan
+
 
 label start:
     play music "audio/BGM/insomniac.mp3" loop volume 0.5
@@ -16,6 +101,7 @@ label start:
     
     ## SCENE 01 — JUST ANOTHER DAY
     ## Location: Ruang Kelas — Siang Hari
+
     "Kehidupan mahasiswa."
     "Tugas, presentasi, revisi, dan deadline."
     "Empat hal yang rasanya tidak pernah benar-benar hilang dari kehidupan perkuliahan."
@@ -23,37 +109,36 @@ label start:
     "Bagi sebagian lainnya, kuliah hanyalah perjuangan untuk bertahan sampai akhir semester."
     "Dan bagi seorang mahasiswa yang lebih sering berhadapan dengan barisan kode daripada manusia..."
     "Hari ini seharusnya menjadi hari yang biasa."
-    show coder
+
+    show coder at char_center
+
     coder "(Ngantuk banget...)"
     coder "(Semoga kelas hari ini cepet selesai.)"
     coder "(Pulang, makan, terus main game kayaknya enak.)"
-    hide coder
-    
-    show designer
+
+    show coder at move_left
+    show designer at enter_right           # Testing Animasi # - # Testing Animasi # - # Testing Animasi # - # Testing Animasi #                                 
+    pause 0.6
+
     designer "Psst."
-    hide designer
-    show coder
+
     coder "Hm?"
-    hide coder
-    show designer
+
     designer "Lo dengerin nggak dari tadi?"
-    hide designer
-    show coder
+
     coder "Dengerin apaan?"
-    hide coder
-    show designer
+    
     designer "Materi dosen."
-    hide designer
-    show coder
+    
     coder "Oh."
-    hide coder
-    show coder
     coder "..."
     coder "Emang tadi bahas apa?"
-    hide coder
-    show designer
+
     designer "Ya ampun."
-    hide designer
+
+    hide coder
+    hide designer                       # Testing Animasi # - # Testing Animasi # - # Testing Animasi # - # Testing Animasi #     
+ 
     
     "The Designer menggelengkan kepalanya."
     "Mereka sudah cukup lama bersahabat. Walaupun memiliki kepribadian dan kebiasaan yang berbeda, keduanya sering mengerjakan tugas bersama."
@@ -61,12 +146,14 @@ label start:
     "Satu hal yang mereka miliki bersama adalah kebiasaan meremehkan waktu yang masih tersisa."
     
     # [SFX: Ketukan meja.]
+    show dosen
     dosen "Baik, semuanya. Sebelum kelas hari ini saya akhiri, ada informasi mengenai tugas akhir mata kuliah Pemrograman Web."
     "Suasana kelas perlahan menjadi tenang."
     dosen "Untuk tugas akhir semester ini, kalian diwajibkan membuat sebuah website interaktif."
     dosen "Website harus memiliki fungsi yang berjalan dengan baik, bukan hanya tampilan."
     dosen "Proyek ini akan dikerjakan secara berkelompok."
     dosen "Setiap kelompok wajib terdiri dari tiga orang. Tidak boleh kurang dan tidak boleh lebih."
+    hide dosen
     show coder
     coder "(Website interaktif?)"
     coder "(Oke, masih masuk akal.)"
@@ -164,12 +251,18 @@ label start:
     "Dengan pilihan yang semakin terbatas, keduanya memutuskan untuk menghampiri dosen."
     "Namun, tepat ketika The Coder hendak berdiri dari kursinya..."
     
+    show anomaly
     anomaly "Permisi, Pak. Maaf saya terlambat."
+    hide anomaly
     "Seorang mahasiswa laki-laki memasuki kelas."
     "Wajahnya terlihat sedikit terburu-buru, seolah baru saja berlari menuju ruangan."
     "Beberapa mahasiswa menoleh ke arahnya."
+    show dosen
     dosen "Kamu baru datang?"
+    hide dosen
+    show anomaly
     anomaly "Iya, Pak. Maaf."
+    hide anomaly
     dosen "Kalau begitu, kamu sudah punya kelompok untuk tugas akhir?"
     anomaly "Kelompok, Pak?"
     dosen "Iya. Tugas akhir Pemrograman Web. Satu kelompok tiga orang."

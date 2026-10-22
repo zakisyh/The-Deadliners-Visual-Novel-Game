@@ -146,7 +146,7 @@ label start:
     "Satu hal yang mereka miliki bersama adalah kebiasaan meremehkan waktu yang masih tersisa."
     
     # [SFX: Ketukan meja.]
-    show dosen
+    show dosen at char_center
     dosen "Baik, semuanya. Sebelum kelas hari ini saya akhiri, ada informasi mengenai tugas akhir mata kuliah Pemrograman Web."
     "Suasana kelas perlahan menjadi tenang."
     dosen "Untuk tugas akhir semester ini, kalian diwajibkan membuat sebuah website interaktif."
@@ -154,44 +154,47 @@ label start:
     dosen "Proyek ini akan dikerjakan secara berkelompok."
     dosen "Setiap kelompok wajib terdiri dari tiga orang. Tidak boleh kurang dan tidak boleh lebih."
     hide dosen
-    show coder
+
+    show coder at char_center
     coder "(Website interaktif?)"
     coder "(Oke, masih masuk akal.)"
     hide coder
+
+    show dosen at char_center
     dosen "Kalian diberikan waktu tiga bulan untuk menyelesaikannya."
     dosen "Manfaatkan waktu tersebut dengan baik. Saya tidak mau mendengar alasan proyek belum selesai ketika waktunya presentasi."
-    show coder
+    hide dosen
+
+    show coder at char_center
     coder "(Tiga bulan?)"
     coder "(Lama juga.)"
     coder "(Harusnya aman lah.)"
-    hide coder
-    show designer
+    
+    show coder at move_left
+    show designer at enter_right
+    pause 0.6
+
     designer "Eh."
-    hide designer
-    show coder
+
     coder "Apa?"
-    hide coder
-    show designer
+    
     designer "Kita sekelompok, kan?"
-    hide designer
-    show coder
+    
     coder "Ya iyalah."
-    hide coder
-    show designer
+    
     designer "Oke. Berarti kurang satu orang."
-    hide designer
-    show coder
+    
     coder "Gampang. Cari aja nanti."
-    hide coder
-    show designer
+    
     designer "Yakin?"
-    hide designer
-    show coder
+    
     coder "Yakin. Emangnya sesusah apa sih nyari satu orang?"
     hide coder
-    
+    hide designer
+
     "Kalimat yang terdengar begitu sederhana."
     "Dan, tanpa disadari The Coder, mungkin menjadi awal dari salah satu keputusan paling merepotkan dalam semester tersebut."
+
     
     ## SCENE 02 — LOOKING FOR A THIRD MEMBER
     ## Location: Ruang Kelas — Beberapa Menit Kemudian
@@ -199,84 +202,86 @@ label start:
     "Beberapa mahasiswa mulai berpindah tempat duduk."
     "Sebagian lainnya sudah membentuk kelompok bahkan sebelum instruksi selesai disampaikan."
     
-    show designer
+    show designer at enter_right
+    show coder at enter_left
+    pause 0.6
+
     designer "Oke. Kita ajak siapa?"
-    hide designer
-    show coder
+
     coder "Coba yang duduk belakang."
-    hide coder
-    show designer
+
     designer "Udah punya kelompok."
-    hide designer
-    show coder
+
     coder "Yang depan?"
-    hide coder
-    show designer
+
     designer "Udah juga."
-    hide designer
-    show coder
+
     coder "Yang sebelah sana?"
-    hide coder
-    show designer
+
     designer "Tadi gue udah tanya. Penuh."
-    hide designer
-    show coder
+
     coder "..."
-    hide coder
-    show designer
+
     designer "..."
-    hide designer
-    show coder
+
     coder "Seriusan?"
-    hide coder
-    show designer
+
     designer "Makanya. Lo tadi bilang gampang."
-    hide designer
-    show coder
+
     coder "Ya gue kira masih banyak yang belum dapet."
-    hide coder
-    show designer
+
     designer "Terus sekarang gimana?"
-    hide designer
-    show coder
+
     coder "Coba kita tanya dosen aja. Siapa tahu boleh berdua."
-    hide coder
-    show designer
+
     designer "Tadi jelas-jelas dibilang harus bertiga."
-    hide designer
-    show coder
+
     coder "Ya siapa tahu ada pengecualian."
+
     hide coder
+    hide designer
 
     "Dengan pilihan yang semakin terbatas, keduanya memutuskan untuk menghampiri dosen."
     "Namun, tepat ketika The Coder hendak berdiri dari kursinya..."
     
-    show anomaly
+    show anomaly at char_center
+
     anomaly "Permisi, Pak. Maaf saya terlambat."
-    hide anomaly
+
     "Seorang mahasiswa laki-laki memasuki kelas."
     "Wajahnya terlihat sedikit terburu-buru, seolah baru saja berlari menuju ruangan."
     "Beberapa mahasiswa menoleh ke arahnya."
-    show dosen
+
+    show dosen at enter_left
+    show anomaly at move_right
+    pause 0.6
+
     dosen "Kamu baru datang?"
-    hide dosen
-    show anomaly
+
     anomaly "Iya, Pak. Maaf."
-    hide anomaly
+
     dosen "Kalau begitu, kamu sudah punya kelompok untuk tugas akhir?"
+
     anomaly "Kelompok, Pak?"
+
     dosen "Iya. Tugas akhir Pemrograman Web. Satu kelompok tiga orang."
+
     anomaly "Oh... belum, Pak."
+
     dosen "Nah, kebetulan."
+
     dosen "Kalian berdua tadi belum dapat anggota ketiga, kan?"
-    show coder
+
+    hide anomaly
+    show coder at enter_right
+    pause 0.6
+
     coder "Belum, Pak."
-    hide coder
+
     dosen "Bagus. Berarti kalian bertiga satu kelompok."
-    show coder
+
     coder "Eh..."
-    hide coder
-    show designer
+
     designer "..."
     hide designer
     anomaly "Oh, oke, Pak."

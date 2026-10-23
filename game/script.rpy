@@ -1,4 +1,4 @@
-init python:
+init python:                                        # Update - Update - Update - Update Update - Update #
 
     def atur_cahaya(event, speaker=None, **kwargs):
 
@@ -48,8 +48,8 @@ define narrator = Character(
 )
 
 # Image Char Assets ---------------------------------------------------------------------------------------------
-image coder = Transform("images/Karakter/The Coder/thecoder.png", zoom=0.6)
-image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=0.6)
+image coder = Transform("images/Karakter/The Coder/thecoder.png", zoom=0.58)
+image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=0.58)
 image dosen = Transform("images/Karakter/Dosen/dos.png", zoom=0.7)
 image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.7)
 
@@ -65,40 +65,97 @@ transform ngomong:
 transform diam:
     ease 0.2 matrixcolor BrightnessMatrix(-0.35)        # Karakter tidak berbicara (gelap)
 
-# ============================================================================================================
-# ANIMASI PERGERAKAN KARAKTER
-# ============================================================================================================
+# ==================================================================================================
+# ANIMASI 1 KARAKTER
+# ==================================================================================================
 transform char_center:
     xanchor 0.5
-    xpos 0.5
-    yalign 1.0              # Karakter muncul di tengah
+    xpos 0.50
+    yalign 1.0                                      # Langsung muncul di tengah
 
+transform enter_center_left:
+    xanchor 0.5
+    xpos -0.30
+    yalign 1.0
+    ease 0.6 xpos 0.50                              # Masuk dari kiri menuju tengah
+
+transform enter_center_right:
+    xanchor 0.5
+    xpos 1.30
+    yalign 1.0
+    ease 0.6 xpos 0.50                              # Masuk dari kanan menuju tengah
+
+transform exit_left:
+    ease 0.6 xpos -0.30                             # Keluar ke kiri
+
+transform exit_right:
+    ease 0.6 xpos 1.30                              # Keluar ke kanan
+
+
+# ================================================================================================
+# ANIMASI 2 KARAKTER
+# ================================================================================================
 transform move_left:
-    ease 0.6 xpos 0.30      # Karakter Bergeser Kekiri
+    ease 0.6 xpos 0.30                              # Karakter bergeser ke kiri
 
 transform move_right:
-    ease 0.6 xpos 0.70      # Karakter Bergeser Ke kanan
-
-transform back_center:
-    ease 0.6 xpos 0.5       # Karakter kembali ke tengah
-
-transform enter_right:
-    xanchor 0.5
-    xpos 1.3
-    yalign 1.0
-    ease 0.6 xpos 0.70      # Karakter masuk dari kanan ke posisi kanan
+    ease 0.6 xpos 0.70                              # Karakter bergeser ke kanan
 
 transform enter_left:
     xanchor 0.5
     xpos -0.30
     yalign 1.0
-    ease 0.6 xpos 0.30      # Karakter masuk dari kiri ke posisi kiri
+    ease 0.6 xpos 0.30                              # Karakter kedua masuk dari kiri
 
-transform exit_right:
-    ease 0.6 xpos 1.3       # Karakter keluar ke kanan
+transform enter_right:
+    xanchor 0.5
+    xpos 1.30
+    yalign 1.0
+    ease 0.6 xpos 0.70                              # Karakter kedua masuk dari kanan
 
-transform exit_right:
-    ease 0.6 xpos 1.30      # Karakter keluar ke kanan
+transform back_center:
+    ease 0.6 xpos 0.50                              # Karakter yang tersisa kembali ke tengah
+
+transform posisi_kiri_2:
+    xanchor 0.5
+    xpos 0.30
+    yalign 1.0                                      # Langsung muncul di kiri
+
+transform posisi_kanan_2:
+    xanchor 0.5
+    xpos 0.70
+    yalign 1.0                                      # Langsung muncul di kanan
+
+# ===============================================================================================================
+# ANIMASI 3 KARAKTER
+# ===============================================================================================================
+transform kiri_3:
+    xanchor 0.5
+    yalign 1.0
+    ease 0.6 xpos 0.20                              # Geser ke posisi kiri
+
+transform tengah_3:
+    xanchor 0.5
+    yalign 1.0
+    ease 0.6 xpos 0.50                              # Geser ke posisi tengah
+
+transform kanan_3:
+    xanchor 0.5
+    yalign 1.0
+    ease 0.6 xpos 0.80                              # Geser ke posisi kanan
+
+transform masuk_kiri_3:
+    xanchor 0.5
+    xpos -0.30
+    yalign 1.0
+    ease 0.6 xpos 0.20                              # Karakter ketiga masuk dari kiri
+
+transform masuk_kanan_3:
+    xanchor 0.5
+    xpos 1.30
+    yalign 1.0
+    ease 0.6 xpos 0.80                              # Karakter ketiga masuk dari kanan
+
 
 
 label start:
@@ -116,14 +173,15 @@ label start:
     "Dan bagi seorang mahasiswa yang lebih sering berhadapan dengan barisan kode daripada manusia..."
     "Hari ini seharusnya menjadi hari yang biasa."
 
-    show coder at char_center
+    show coder at enter_center_left
+    pause 0.6
 
     coder "(Ngantuk banget...)"
     coder "(Semoga kelas hari ini cepet selesai.)"
     coder "(Pulang, makan, terus main game kayaknya enak.)"
 
     show coder at move_left
-    show designer at enter_right           # Testing Animasi # - # Testing Animasi # - # Testing Animasi # - # Testing Animasi #                                 
+    show designer at enter_right                                        
     pause 0.6
 
     designer "Psst."
@@ -143,7 +201,7 @@ label start:
     designer "Ya ampun."
 
     hide coder
-    hide designer                       # Testing Animasi # - # Testing Animasi # - # Testing Animasi # - # Testing Animasi #     
+    hide designer                        
  
     
     "The Designer menggelengkan kepalanya."
@@ -195,6 +253,9 @@ label start:
     designer "Yakin?"
     
     coder "Yakin. Emangnya sesusah apa sih nyari satu orang?"
+    show coder at exit_left
+    show designer at exit_right
+    pause 0.6
     hide coder
     hide designer
 
@@ -250,7 +311,8 @@ label start:
     "Dengan pilihan yang semakin terbatas, keduanya memutuskan untuk menghampiri dosen."
     "Namun, tepat ketika The Coder hendak berdiri dari kursinya..."
     
-    show anomaly at char_center
+    show anomaly at enter_center_right
+    pause 0.6
 
     anomaly "Permisi, Pak. Maaf saya terlambat."
 
@@ -278,8 +340,9 @@ label start:
 
     dosen "Kalian berdua tadi belum dapat anggota ketiga, kan?"
 
-    hide anomaly
-    show coder at enter_right
+    show anomaly at tengah_3
+    show coder at masuk_kanan_3
+    show dosen at kiri_3
     pause 0.6
 
     coder "Belum, Pak."
@@ -288,37 +351,40 @@ label start:
 
     coder "Eh..."
 
-    designer "..."
-    hide designer
     anomaly "Oh, oke, Pak."
     dosen "Sudah, berarti semua kelompok lengkap."
+    show coder at exit_right
+    show anomaly at move_right
+    show dosen at move_left
+    pause 0.6
+
+    show anomaly at exit_right
+    show dosen at back_center
+    pause 0.6
+
     dosen "Silakan diskusikan proyek kalian masing-masing. Minggu depan saya ingin melihat gambaran awal konsep websitenya."
+    hide dosen
+
+    show coder at posisi_kiri_2
+    show designer at posisi_kanan_2
     "The Coder menoleh ke arah The Designer."
     "The Designer membalas tatapannya."
     "Tak satu pun dari mereka mengatakan apa-apa."
     
-    show coder
     coder "(Ya... setidaknya kita udah dapet anggota ketiga.)"
     coder "(Meskipun agak mendadak.)"
-    hide coder
-    show designer
+
     designer "(Well... dapet juga akhirnya.)"
-    hide designer
-    show coder
+
     coder "Iya."
-    hide coder
-    show designer
+
     designer "Lo kenal dia?"
-    hide designer
-    show coder
+
     coder "Nggak."
-    hide coder
-    show designer
+
     designer "Gue juga nggak."
-    hide designer
-    show coder
-    coder "Ya udah, kenalan dulu aja."
-    hide coder
+
+    coder "Ya udah, kenalan dulu aja."                                  # Update - Update - Update - Update Update - Update #
     
     ## SCENE 03 — THE NEW MEMBER
     ## Location: Ruang Kelas — Setelah Perkuliahan

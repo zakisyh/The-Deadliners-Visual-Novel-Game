@@ -41,11 +41,17 @@ define dosen = Character(
     cb_speaker="dosen"
 )
 
+define narrator = Character(
+    None,
+    callback=atur_cahaya,
+    cb_speaker="narrator"
+)
+
 # Image Char Assets ---------------------------------------------------------------------------------------------
 image coder = Transform("images/Karakter/The Coder/thecoder.png", zoom=0.6)
 image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=0.6)
-image dosen = Transform("images/Karakter/Dosen/dos.png", zoom=0.9)
-image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.9)
+image dosen = Transform("images/Karakter/Dosen/dos.png", zoom=0.7)
+image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.7)
 
 # Image Background Assets ---------------------------------------------------------------------------------------
 image bg_kelas = "images/bg/kelas.jpg"

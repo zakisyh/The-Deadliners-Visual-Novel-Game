@@ -1,4 +1,4 @@
-init python:                                        # Update - Update - Update - Update Update - Update #
+init python:                                        
 
     def atur_cahaya(event, speaker=None, **kwargs):
 
@@ -384,43 +384,48 @@ label start:
 
     designer "Gue juga nggak."
 
-    coder "Ya udah, kenalan dulu aja."                                  # Update - Update - Update - Update Update - Update #
+    coder "Ya udah, kenalan dulu aja."                                  
     
     ## SCENE 03 — THE NEW MEMBER
     ## Location: Ruang Kelas — Setelah Perkuliahan
     "Mahasiswa mulai meninggalkan kelas satu per satu."
     "The Coder dan The Designer menghampiri anggota kelompok baru mereka yang sedang memasukkan barang ke dalam tas."
-    show coder
+
+    show anomaly at char_center                                         # Update - Update - Update - Update Update - Update #
+    show anomaly at kiri_3
+    show coder at masuk_kanan_3
+    show coder at tengah_3
+    show designer at masuk_kanan_3
+    pause 0.6
+
     coder "Bro."
-    hide coder
+
     anomaly "Hm?"
-    show coder
+
     coder "Kita satu kelompok tadi, kan?"
-    hide coder
-    anomaly "Oh, iya."
-    show coder
+
+
     coder "Gue yang bakal ngerjain bagian programming. Ini temen gue, dia biasanya yang ngurus bagian desain."
-    hide coder
-    show designer
+
     designer "Hai."
-    hide designer
+
     anomaly "Oh, hai."
-    show designer
+
     designer "Nanti kita perlu diskusi buat nentuin konsep website sama pembagian tugasnya."
-    hide designer
+
     anomaly "Oh, oke."
-    show coder
+
     coder "Lo ada ide mau bikin website apa?"
-    hide coder
+
     anomaly "Hmm..."
     anomaly "Terserah kalian aja sih."
-    show coder
+  
     coder "Oh... oke."
-    hide coder
-    show designer
+
     designer "Kalau gitu kita bikin grup dulu aja, ya?"
-    hide designer
-    anomaly "Boleh."
+
+    anomaly "Boleh."                                                            # Update - Update - Update - Update Update - Update #
+
     "Mereka bertukar kontak dan membuat grup untuk koordinasi tugas."
     "Tidak ada yang terlihat terlalu aneh."
     "Anggota baru mereka memang tidak banyak berbicara, tetapi bukan berarti dia tidak bisa diajak bekerja sama."

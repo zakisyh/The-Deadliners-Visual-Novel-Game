@@ -55,6 +55,7 @@ image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.7)
 
 # Image Background Assets ---------------------------------------------------------------------------------------
 image bg_kelas = "images/bg/kelas.jpg"
+image kantin = "images/bg/kantin-kampus.jpg"
 
 # ===========================================================================================================
 # KECERAHAN KARAKTER
@@ -391,7 +392,7 @@ label start:
     "Mahasiswa mulai meninggalkan kelas satu per satu."
     "The Coder dan The Designer menghampiri anggota kelompok baru mereka yang sedang memasukkan barang ke dalam tas."
 
-    show anomaly at char_center                                         # Update - Update - Update - Update Update - Update #
+    show anomaly at char_center                                       
     show anomaly at kiri_3
     show coder at masuk_kanan_3
     show coder at tengah_3
@@ -403,7 +404,6 @@ label start:
     anomaly "Hm?"
 
     coder "Kita satu kelompok tadi, kan?"
-
 
     coder "Gue yang bakal ngerjain bagian programming. Ini temen gue, dia biasanya yang ngurus bagian desain."
 
@@ -432,161 +432,142 @@ label start:
     "Setidaknya..."
     "Belum ada alasan untuk berpikir sebaliknya."
     
-    show designer
     designer "Oke, udah gue masukin semua."
     designer "Lusa kita ketemu lagi buat bahas konsep awalnya. Bisa?"
-    hide designer
-    show coder
+
     coder "Bisa."
-    hide coder
+
     anomaly "Iya."
-    show coder
+
     coder "Sip. Berarti ketemu lusa."
-    hide coder
+
     "Mereka kemudian berpisah."
+
+    show designer at exit_right
+    show coder at move_right
+    show anomaly at move_left
+    pause 0.6
+
+    show coder at exit_right
+    show anomaly at exit_left
+    pause 0.6
+
     "The Coder dan The Designer berjalan bersama meninggalkan kelas."
     "Sementara anggota ketiga mereka pergi ke arah lain."
     "Untuk saat ini, dia hanyalah seorang anggota kelompok baru."
     "Namun, kelak A dan B akan mengenalnya dengan sebuah julukan yang cukup unik."
     "THE ANOMALY"
-    "A nickname that hasn't been earned. Yet."
+    "A nickname that hasn't been earned. Yet."                           # Update - Update - Update - Update Update - Update #
     
     ## SCENE 04 — LUNCH BREAK
     ## Location: Warung Makan Dekat Kampus
+    scene kantin
+
     "Selesai kelas, The Coder dan The Designer memutuskan untuk makan di sebuah warung dekat kampus."
     "Tempat tersebut sudah cukup sering mereka kunjungi."
     "Bukan karena makanannya luar biasa."
     "Hanya saja, harganya cukup bersahabat dengan kondisi dompet mahasiswa."
     
-    show designer
+    show coder at enter_left
+    show designer at enter_right
+    pause 0.6
+
     designer "Jadi, gimana menurut lo?"
-    hide designer
-    show coder
+
     coder "Soal apa?"
-    hide coder
-    show designer
+
     designer "Kelompok kita."
-    hide designer
-    show coder
+
     coder "Ya bagus, kan udah lengkap."
-    hide coder
-    show designer
+
     designer "Maksud gue anggota baru kita."
-    hide designer
-    show coder
+
     coder "Oh."
     coder "Kenapa emangnya?"
-    hide coder
-    show designer
+
     designer "Nggak tahu. Kayaknya dia pendiem banget."
-    hide designer
-    show coder
+
     coder "Mungkin emang orangnya begitu."
-    hide coder
-    show designer
+
     designer "Iya, sih."
     designer "Cuma gue berharap nanti dia bisa diajak kerja sama."
-    hide designer
-    show coder
+
     coder "Ya pasti bisa lah."
-    hide coder
-    show designer
+
     designer "Lo optimis banget hari ini."
-    hide designer
-    show coder
+
     coder "Daripada pesimis mulu."
-    hide coder
-    show designer
+
     designer "Masalahnya, ini tugas akhir. Nilainya lumayan besar."
-    hide designer
-    show coder
+
     coder "Masih tiga bulan, santai."
-    hide coder
-    show designer
+
     designer "Nah. Itu dia."
-    hide designer
-    show coder
+
     coder "Apa?"
-    hide coder
-    show designer
+
     designer "Kalimat 'masih tiga bulan' itu bahaya."
-    hide designer
-    show coder
+
     coder "Kenapa?"
-    hide coder
-    show designer
+
     designer "Soalnya nanti bulan depan lo bilang masih dua bulan."
     designer "Bulan depannya lagi lo bilang masih satu bulan."
     designer "Terus pas tinggal seminggu baru panik."
-    hide designer
-    show coder
+
     coder "..."
     coder "Kayaknya lo terlalu sering mikir buruk."
-    hide coder
-    show designer
+
     designer "Dan kayaknya lo terlalu sering ngerjain tugas H-1."
-    hide designer
-    show coder
+
     coder "Fitnah."
-    hide coder
-    show designer
+
     designer "Tugas kemarin siapa yang baru selesai jam tiga pagi?"
-    hide designer
-    show coder
+
     coder "..."
     coder "Itu beda kasus."
-    hide coder
+
     "The Designer tertula kecil."
     "The Coder hanya menghela napas sebelum kembali menyantap makanannya."
-    show designer
+
     designer "Eh, tapi serius."
-    hide designer
-    show coder
+
     coder "Hm?"
-    hide coder
-    show designer
+
     designer "Menurut lo, kita perlu langsung nentuin jobdesk sekarang, atau tunggu diskusi lusa?"
-    hide designer
     
     # CHOICE 01 — A SMALL DECISION
     menu:
         "Mending kita tentuin dari sekarang.":
-            show coder
             coder "Menurut gue mending kita tentuin dari sekarang."
             coder "Biar pas ketemu lusa tinggal bahas detailnya."
-            hide coder
-            show designer
+
             designer "Nah, tumben banget lo ngomong bener."
-            hide designer
-            show coder
+
             coder "Maksudnya biasanya gue salah?"
-            hide coder
-            show designer
+
             designer "N..."
-            hide designer
-            show coder
+
             coder "..."
-            hide coder
-            show designer
+
             designer "Oke, nanti gue coba bikin list pembagian tugas..."
+            hide coder
             hide designer
             jump scene_05
         "Lusa aja, kan masih banyak waktu.":
-            show coder
+
             coder "Lusa aja lah."
             coder "Kan sekian semuanya kumpul. Biar enak dibahas bareng."
-            hide coder
-            show designer
+
             designer "Hmm... ya masuknya juga."
             designer "Tapi jangan dulu..."
-            hide designer
-            show coder
+
             coder "Iya, iya."
-            hide coder
-            show designer
+
             designer "Janji?"
-            hide designer
+
             coder "Iya, janji."
+            hide coder
+            hide designer
             jump scene_05
     
 label scene_05:
@@ -597,29 +578,32 @@ label scene_05:
     "Game yang sedang mereka mainkan."
     "Tugas mata kuliah lain."
     "Dan berbagai hal kecil yang biasanya memenuhi keseharian mahasiswa."
-    show designer
+
+    show coder at enter_left
+    show designer at enter_right
+    pause 0.6
+
     designer "Eh, nanti malem lo mau ngapain?"
-    hide designer
-    show coder
+
     coder "Kayaknya main."
-    hide coder
-    show designer
+
     designer "Game lagi?"
-    hide designer
-    show coder
+
     coder "Ya masa ngerjain tugas terus?"
-    hide coder
-    show designer
+
     designer "Padahal tugas aja belum dikerjain."
-    hide designer
-    show coder
+
     coder "Kan masih tiga bulan."
-    hide coder
-    show designer
+
     designer "Ya ampun, itu lagi."
-    hide designer
+
     "The Coder tertawa."
     "Mereka menghabiskan waktu beberapa saat sebelum akhirnya meninggalkan warung."
+    
+    show coder at posisi_kiri_2
+    show designer at posisi_kanan_2
+    pause 0.6
+
     "Tidak ada pertengkaran."
     "Tidak ada deadline yang mengancam."
     "Tidak ada pesan grup yang harus dibalas dengan panik."

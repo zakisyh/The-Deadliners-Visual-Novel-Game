@@ -191,18 +191,21 @@ label start:
 
     designer "Lo dengerin nggak dari tadi?"
 
-    coder "Dengerin apaan?"
-    
-    designer "Materi dosen."
-    
-    coder "Oh."
-    coder "..."
-    coder "Emang tadi bahas apa?"
+    menu:                                                                       # Update - Update - Update - Update Update - Update #
+        "Dengerin kok. Sedikit.":
+            coder "Gw denger beberapa"
+            designer "oke.."
+            coder "Berarti gw masi fokus diawal"
+            designer "Yaampun"
 
-    designer "Ya ampun."
+        "Jujur aja, gw nggak dengerin":
+            coder "Nggak, gw ngantuk banget."
+            designer "Setidaknya lo ga ketiduran"
+            coder "I will try my best"
+            designer "I hope so"
 
     hide coder
-    hide designer                        
+    hide designer                                                           # Update - Update - Update - Update Update - Update #
  
     
     "The Designer menggelengkan kepalanya."
@@ -420,11 +423,23 @@ label start:
     anomaly "Hmm..."
     anomaly "Terserah kalian aja sih."
   
-    coder "Oh... oke."
+    menu:                                                               # Update - Update - Update - Update Update - Update #
+        "Oke, nanti kita pikirin bareng":
+            coder "oh Oke, Nanti kita pikirin bareng aja"
+            anomaly "Oke"
+            designer "Gwe ada ide bagus buat nanti"
+            coder "Oke, keep dulu aja"
+
+        "Ada ide?":
+            coder "Ada yang punya ide untuk sementara?"
+            anomaly "Belum kepikiran sih"
+            coder "Oh, coba dipikirin aja"
+            designer "iya, kita masih bisa diskusi bareng"
+            anomaly "Oke"                                               # Update - Update - Update - Update Update - Update #
 
     designer "Kalau gitu kita bikin grup dulu aja, ya?"
 
-    anomaly "Boleh."                                                            # Update - Update - Update - Update Update - Update #
+    anomaly "Boleh."                                                            
 
     "Mereka bertukar kontak dan membuat grup untuk koordinasi tugas."
     "Tidak ada yang terlihat terlalu aneh."
@@ -457,7 +472,7 @@ label start:
     "Untuk saat ini, dia hanyalah seorang anggota kelompok baru."
     "Namun, kelak A dan B akan mengenalnya dengan sebuah julukan yang cukup unik."
     "THE ANOMALY"
-    "A nickname that hasn't been earned. Yet."                           # Update - Update - Update - Update Update - Update #
+    "A nickname that hasn't been earned. Yet."                           
     
     ## SCENE 04 — LUNCH BREAK
     ## Location: Warung Makan Dekat Kampus
@@ -605,7 +620,7 @@ label scene_05:
     pause 0.6
 
     "Tidak ada pertengkaran."
-    "Tidak ada deadline yang mengancam."
+    "Tidak ada deadline yang mengancam."                                   
     "Tidak ada pesan grup yang harus dibalas dengan panik."
     "Hanya dua mahasiswa yang baru saja mendapatkan sebuah proyek baru."
     "Dan satu anggota kelompok yang belum mereka kenal dengan baik."

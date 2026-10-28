@@ -1,3 +1,6 @@
+# =========================================================================================================================
+# Character Auto Brightness
+# =========================================================================================================================
 init python:                                        
 
     def atur_cahaya(event, speaker=None, **kwargs):
@@ -15,7 +18,9 @@ init python:
                 else:
                     renpy.show(nama, at_list=[diam])
 
-# Define Character ----------------------------------------------------------------------------------------------
+# =========================================================================================================================
+# Define Character
+# =========================================================================================================================
 define coder = Character(
     "The Coder",
     image="coder",
@@ -47,28 +52,32 @@ define narrator = Character(
     cb_speaker="narrator"
 )
 
-# Image Char Assets ---------------------------------------------------------------------------------------------
+# =========================================================================================================================
+# Image Char Assets
+# =========================================================================================================================
 image coder = Transform("images/Karakter/The Coder/thecoder.png", zoom=0.58)
 image designer = Transform("images/Karakter/The Designer/thedesigner.png", zoom=0.58)
 image dosen = Transform("images/Karakter/Dosen/dos.png", zoom=0.7)
 image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.7)
 
-# Image Background Assets ---------------------------------------------------------------------------------------
+# =========================================================================================================================
+# Image Background Assets
+# =========================================================================================================================
 image bg_kelas = "images/bg/kelas.jpg"
 image kantin = "images/bg/kantin-kampus.jpg"
 
-# ===========================================================================================================
+# =========================================================================================================================
 # KECERAHAN KARAKTER
-# ===========================================================================================================
+# =========================================================================================================================
 transform ngomong:
     ease 0.2 matrixcolor BrightnessMatrix(0.0)          # Karakter sedang berbicara (terang)
 
 transform diam:
     ease 0.2 matrixcolor BrightnessMatrix(-0.35)        # Karakter tidak berbicara (gelap)
 
-# ==================================================================================================
+# =========================================================================================================================
 # ANIMASI 1 KARAKTER
-# ==================================================================================================
+# =========================================================================================================================
 transform char_center:
     xanchor 0.5
     xpos 0.50
@@ -93,9 +102,9 @@ transform exit_right:
     ease 0.6 xpos 1.30                              # Keluar ke kanan
 
 
-# ================================================================================================
+# =========================================================================================================================
 # ANIMASI 2 KARAKTER
-# ================================================================================================
+# =========================================================================================================================
 transform move_left:
     ease 0.6 xpos 0.30                              # Karakter bergeser ke kiri
 
@@ -127,9 +136,9 @@ transform posisi_kanan_2:
     xpos 0.70
     yalign 1.0                                      # Langsung muncul di kanan
 
-# ===============================================================================================================
+# =======================================================================================================================
 # ANIMASI 3 KARAKTER
-# ===============================================================================================================
+# =======================================================================================================================
 transform kiri_3:
     xanchor 0.5
     yalign 1.0
@@ -158,6 +167,30 @@ transform masuk_kanan_3:
     ease 0.6 xpos 0.80                              # Karakter ketiga masuk dari kanan
 
 
+# ====================================================================================================================
+# TITLE CARD PROLOG
+# ====================================================================================================================
+                                                                        # Update - Update - Update - Update Update - Update #
+transform title_fade:
+    alpha 0.0
+    ease 1.5 alpha 1.0
+
+transform title_disappear:
+    ease 1.0 alpha 0.0
+
+image title_90_days = Text(
+    "90 DAYS LEFT",
+    size=90,
+    color="#FFFFFF",
+    bold=True
+)
+
+image title_deadliners = Text(
+    "THE DEADLINERS",
+    size=85,
+    color="#FFFFFF",
+    bold=True
+)                                                                     # Update - Update - Update - Update Update - Update #
 
 label start:
     play music "audio/BGM/insomniac.mp3" loop volume 0.5
@@ -191,7 +224,7 @@ label start:
 
     designer "Lo dengerin nggak dari tadi?"
 
-    menu:                                                                       # Update - Update - Update - Update Update - Update #
+    menu:                                                                       
         "Dengerin kok. Sedikit.":
             coder "Gw denger beberapa"
             designer "oke.."
@@ -205,7 +238,7 @@ label start:
             designer "I hope so"
 
     hide coder
-    hide designer                                                           # Update - Update - Update - Update Update - Update #
+    hide designer                                                           
  
     
     "The Designer menggelengkan kepalanya."
@@ -423,7 +456,7 @@ label start:
     anomaly "Hmm..."
     anomaly "Terserah kalian aja sih."
   
-    menu:                                                               # Update - Update - Update - Update Update - Update #
+    menu:                                                               
         "Oke, nanti kita pikirin bareng":
             coder "oh Oke, Nanti kita pikirin bareng aja"
             anomaly "Oke"
@@ -435,7 +468,7 @@ label start:
             anomaly "Belum kepikiran sih"
             coder "Oh, coba dipikirin aja"
             designer "iya, kita masih bisa diskusi bareng"
-            anomaly "Oke"                                               # Update - Update - Update - Update Update - Update #
+            anomaly "Oke"                                               
 
     designer "Kalau gitu kita bikin grup dulu aja, ya?"
 
@@ -541,7 +574,7 @@ label start:
     coder "..."
     coder "Itu beda kasus."
 
-    "The Designer tertula kecil."
+    "The Designer tertawa kecil."
     "The Coder hanya menghela napas sebelum kembali menyantap makanannya."
 
     designer "Eh, tapi serius."
@@ -550,7 +583,6 @@ label start:
 
     designer "Menurut lo, kita perlu langsung nentuin jobdesk sekarang, atau tunggu diskusi lusa?"
     
-    # CHOICE 01 — A SMALL DECISION
     menu:
         "Mending kita tentuin dari sekarang.":
             coder "Menurut gue mending kita tentuin dari sekarang."
@@ -628,8 +660,25 @@ label scene_05:
     "Mungkin mereka akan membuat keputusan yang berbeda hari itu."
     "Atau mungkin..."
     "Mereka tetap akan melakukan kesalahan yang sama."
-    "90 DAYS LEFT"
-    "THE DEADLINERS"
-    "We still have time."
-    "END OF PROLOGUE"
-    return
+
+scene black with fade                                           # Update - Update - Update - Update Update - Update #
+stop music fadeout 3.0
+pause 0.8
+
+show title_90_days at truecenter, title_fade
+pause 2.5
+
+show title_90_days at truecenter, title_disappear
+pause 1.0
+hide title_90_days
+pause 0.5
+
+show title_deadliners at truecenter, title_fade
+pause 3.0
+
+show title_deadliners at truecenter, title_disappear
+pause 1.0
+hide title_deadliners
+pause 0.5
+
+return                                                          # Update - Update - Update - Update Update - Update #

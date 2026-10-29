@@ -513,6 +513,8 @@ label chapter_1:
 label ch1_scene_01:
     scene black with dissolve
 
+    show screen website_progress_hud
+
     "Dua hari setelah pembentukan kelompok."
     "Sesuai janji di grup, mereka akan bertemu untuk membahas konsep proyek."
     "Tempatnya di area duduk dekat perpustakaan kampus."
@@ -773,6 +775,8 @@ label ch1_scene_04:
     show designer at move_right
     pause 0.6
     hide anomaly
+
+    $ website_progress = min(100, website_progress + 10)
 
     "Tinggal The Coder dan The Designer di tempat duduk itu."
 

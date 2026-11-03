@@ -1,6 +1,8 @@
 label prolog:
     play music "audio/BGM/insomniac.mp3" loop volume 0.5
     scene bg_kelas
+    with fade
+    with dissolve
     
     ## SCENE 01 — JUST ANOTHER DAY
     ## Location: Ruang Kelas — Siang Hari
@@ -486,5 +488,5 @@ label scene_05:
     pause 1.0
     hide title_deadliners
     pause 0.5
-
-    jump chapter_1
+    
+jump chapter_1

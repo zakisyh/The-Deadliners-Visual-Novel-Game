@@ -22,20 +22,20 @@ init python:
 # Define Character
 # =========================================================================================================================
 define coder = Character(
-    "The Coder",
+    "Luuk",
     image="coder",
     callback=atur_cahaya,
     cb_speaker="coder"
 )
 
 define designer = Character(
-    "The Designer",
+    "Jane",
     callback=atur_cahaya,
     cb_speaker="designer"
 )
 
 define anomaly = Character(
-    "???",
+    "Adrian",
     callback=atur_cahaya,
     cb_speaker="anomaly"
 )

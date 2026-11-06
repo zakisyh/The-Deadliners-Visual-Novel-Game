@@ -4,4 +4,6 @@
 
 label start:
 
+    $ hud_visible = True
+
     jump prolog

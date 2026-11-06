@@ -469,7 +469,9 @@ label scene_05:
     "Atau mungkin..."
     "Mereka tetap akan melakukan kesalahan yang sama."
 
-    scene black with fade                                           # Update - Update - Update - Update Update - Update #
+    $ hud_visible = False
+
+    scene black with fade
     stop music fadeout 3.0
     pause 0.8
 

@@ -22,7 +22,7 @@ label chapter_1:
 label ch1_scene_01:
     scene black with dissolve
 
-    show screen website_progress_hud                                
+    $ hud_visible = True                         
 
     "Dua hari setelah pembentukan kelompok."
     "Sesuai janji di grup, mereka akan bertemu untuk membahas konsep proyek."
@@ -382,6 +382,8 @@ label ch1_scene_05:
     "Mereka baru saja memilih konsep, membagi pekerjaan, dan menetapkan target pertama."
     "Semuanya terasa cukup terkendali."
     "Dan waktu yang tersisa masih terlihat panjang."
+
+    $ hud_visible = False
 
     scene black with fade
     stop music fadeout 2.0

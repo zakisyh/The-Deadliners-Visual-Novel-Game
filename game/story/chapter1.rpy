@@ -389,4 +389,4 @@ label ch1_scene_05:
     stop music fadeout 2.0
     centered "{size=50}CHAPTER 01 COMPLETE{/size}\n{size=36}88 DAYS LEFT{/size}"
 
-    return                                                         
+    jump chapter_2

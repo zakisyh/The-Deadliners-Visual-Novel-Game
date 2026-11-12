@@ -17,6 +17,7 @@ label prolog:
 
     show coder at enter_center_left
     pause 0.6
+    show coder at char_center
 
     coder "(Ngantuk banget...)"
     coder "(Semoga kelas hari ini cepet selesai.)"

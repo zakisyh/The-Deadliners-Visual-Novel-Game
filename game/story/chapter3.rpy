@@ -1716,6 +1716,8 @@ label ch3_scene_04:
 
             "Validasi dasar mulai bekerja."
 
+            $ stress_level = max(0, stress_level - 2)
+
             "Namun, koneksi database, alur pembayaran, dan halaman admin masih belum selesai."
 
             # Progress bertambah 4.

@@ -1346,6 +1346,8 @@ label ch2_scene_04:
     "Beberapa saat berlalu."
 
     "Adrian (grup): Belum."
+    
+    $ stress_level = min(100, stress_level + 3)
 
     "Luuk (grup): Oh, oke. Kalau ada yang susah bilang aja, ya."
 

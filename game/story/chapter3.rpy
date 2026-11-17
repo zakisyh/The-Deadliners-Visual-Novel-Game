@@ -740,6 +740,9 @@ label ch3_scene_02:
 
     "Halaman belum memberikan peringatan yang jelas."
 
+    # Luuk mulai tertekan karena menemukan masalah pada form.
+    $ stress_level = min(100, stress_level + 3)
+
     designer "Oh."
 
     coder "Nah, itu salah satunya."
@@ -1062,6 +1065,8 @@ label ch3_scene_03:
     designer "Oh, dibales."
 
     "Adrian (grup): Belum."
+    # Stress Luuk bertambah karena Adrian masih belum memberikan bahan setelah beberapa minggu.
+    $ stress_level = min(100, stress_level + 4)
 
     designer "..."
 
@@ -1769,6 +1774,7 @@ label ch3_scene_04:
             designer "Oke. Nanti kita sambungin."
 
             "Kerangka pembayaran simulasi sudah terlihat."
+            $ stress_level = max(0, stress_level - 2)
 
             "Namun, validasi pemesanan, database, dan hubungan antarhalaman masih perlu dibuat."
 

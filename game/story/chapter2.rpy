@@ -2016,6 +2016,9 @@ label ch2_scene_05:
 
     "Setelah beberapa waktu, mereka berhenti bermain."
 
+    # Luuk merasa lebih santai setelah bermain bersama Jane.
+    $ stress_level = max(0, stress_level - 2)
+
     "Luuk kembali membuka folder Museum Arunika."
 
     designer "Eh, ngomong-ngomong."

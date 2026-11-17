@@ -6,6 +6,7 @@
 
 label chapter_1:
     scene black with fade
+    $ days_left = 88
     centered "{size=50}CHAPTER 01{/size}\n{size=42}THE FIRST MEETING{/size}\n{size=34}88 DAYS LEFT{/size}"
 
     play music "audio/BGM/insomniac.mp3" loop volume 0.5
@@ -22,7 +23,7 @@ label chapter_1:
 label ch1_scene_01:
     scene black with dissolve
 
-    $ hud_visible = True                         
+    $ hud_visible = True
 
     "Dua hari setelah pembentukan kelompok."
     "Sesuai janji di grup, mereka akan bertemu untuk membahas konsep proyek."

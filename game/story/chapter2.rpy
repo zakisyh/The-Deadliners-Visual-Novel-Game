@@ -43,6 +43,8 @@ label chapter_2:
 
     scene black with fade
 
+    play music "audio/BGM/insomniac.mp3" loop volume 0.5 
+
     centered "{size=50}CHAPTER 02{/size}\n{size=42}WE STILL HAVE TIME{/size}\n{size=34}81 DAYS LEFT{/size}"
 
     jump ch2_scene_01

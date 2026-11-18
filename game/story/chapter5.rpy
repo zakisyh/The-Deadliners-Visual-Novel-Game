@@ -990,5 +990,4 @@ label ch5_scene_05:
     scene black with fade
     centered "{size=50}CHAPTER 05 COMPLETE{/size}\n{size=36}30 DAYS LEFT{/size}\n{size=28}Pieces That Don't Fit.{/size}"
 
-    # Chapter 6 belum dibuat. Jangan jump ke label yang belum tersedia.
-    return
+    jump chapter_6

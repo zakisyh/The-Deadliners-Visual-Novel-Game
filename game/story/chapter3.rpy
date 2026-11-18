@@ -2590,4 +2590,4 @@ label ch3_scene_05:
 
     # Chapter 4 belum dibuat.
     # Jangan jump ke Chapter 4 sampai filenya tersedia.
-    return
+    jump chapter_4

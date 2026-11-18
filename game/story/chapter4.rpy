@@ -1373,4 +1373,4 @@ label ch4_scene_05:
     centered "{size=50}CHAPTER 04 COMPLETE{/size}\n{size=36}45 DAYS LEFT{/size}\n{size=28}The List Keeps Growing."
 
     # Chapter 5 belum ada. Jangan membuat jump ke label yang belum dibuat.
-    return
+    jump chapter_5

@@ -1721,6 +1721,4 @@ label ch6_scene_05:
 
     centered "{size=50}CHAPTER 06 COMPLETE{/size}\n{size=36}15 DAYS LEFT{/size}\n{size=28}The Parts Between."
 
-    # Chapter 7 belum dibuat.
-    # Jangan melompat ke label yang belum tersedia.
-    return
+    jump chapter_7

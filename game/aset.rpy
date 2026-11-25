@@ -64,7 +64,11 @@ image anomaly = Transform("images/Karakter/The-Anomaly/ano.png", zoom=0.7)
 # Image Background Assets
 # =========================================================================================================================
 image bg_kelas = "images/bg/kelas.jpg"
-image kantin = "images/bg/kantin-kampus.jpg"
+image kantin = Transform(
+    "images/bg/kantin-kampus.jpg",
+    xysize=(1920, 1080),
+    fit="Cover"
+)
 
 # =========================================================================================================================
 # KECERAHAN KARAKTER

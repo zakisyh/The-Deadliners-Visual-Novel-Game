@@ -1,10 +1,7 @@
-
 # ============================================================
 # THE DEADLINERS — CHAPTER 05: PIECES THAT DON'T FIT
-# Ren'Py 8.5.3
 # H-42 -> H-30 | 5 scene | 15 menu pilihan
 # ============================================================
-# Cerita baru ini melanjutkan Chapter 4, bukan menggantikan chapter lama.
 # 12 menu dialog biasa, 2 menu penting, 1 kesempatan bukti rahasia.
 # Tidak ada penentuan ending di Chapter 5.
 

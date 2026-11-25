@@ -34,7 +34,6 @@ label chapter_7:
 
 # ============================================================
 # SCENE 01 — TWELVE DAYS | H-12
-# MENU 01, 02, 03: dialog biasa.
 # ============================================================
 label ch7_scene_01:
     $ days_left = 12
@@ -760,6 +759,4 @@ label ch7_scene_05:
     scene black with fade
     centered "{size=50}CHAPTER 07 COMPLETE{/size}\n{size=36}4 DAYS LEFT{/size}\n{size=28}The Final Checklist."
 
-    # Sambungkan ke Chapter 8 setelah file chapter8.rpy benar-benar dibuat.
-    # Fase H-3 dan dialog "Stay with me" belum terjadi di Chapter 7.
-    return
+    jump chapter_8

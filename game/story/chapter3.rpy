@@ -1,8 +1,6 @@
-
 # ============================================================
 # THE DEADLINERS — CHAPTER 03: JUST A FEW MORE THINGS
 # 68 DAYS LEFT -> 60 DAYS LEFT
-# Ren'Py 8.5.3
 # ============================================================
 
 # MENU 02:
@@ -10,8 +8,6 @@
 # False = mengerjakan kerangka galeri dahulu.
 default uji_booking_dulu = False
 
-# MENU 09:
-# True = menyimpan chat pembagian tugas sebagai dokumentasi.
 default arsip_chat_kelompok_tersimpan = False
 
 # MENU 11:
@@ -24,7 +20,6 @@ default prioritas_teknis_lanjutan = ""
 # prioritas_pengerjaan_website
 # catatan_progres_dibuat
 # jumlah_bukti_rahasia
-#
 # Jangan membuat default kedua untuk variabel di atas.
 
 
@@ -2588,6 +2583,4 @@ label ch3_scene_05:
 
     centered "{size=50}CHAPTER 03 COMPLETE{/size}\n{size=36}60 DAYS LEFT{/size}\n{size=28}Just a Few More Things."
 
-    # Chapter 4 belum dibuat.
-    # Jangan jump ke Chapter 4 sampai filenya tersedia.
     jump chapter_4

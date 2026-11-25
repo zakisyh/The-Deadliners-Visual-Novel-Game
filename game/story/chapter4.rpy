@@ -1,6 +1,5 @@
 # ============================================================
 # THE DEADLINERS — CHAPTER 04: THE LIST KEEPS GROWING
-# Ren'Py 8.5.3
 # H-56 -> H-45 | 5 scene | 15 menu pilihan
 # ============================================================
 
@@ -1101,7 +1100,6 @@ label ch4_scene_04:
 
 # ============================================================
 # SCENE 05 — HALFWAY THERE? | 45 DAYS LEFT
-# MENU 13, 14, 15: dialog biasa.
 # Rekap menghormati jalur Chapter 2, 3, dan 4.
 # ============================================================
 label ch4_scene_05:
@@ -1372,5 +1370,4 @@ label ch4_scene_05:
     scene black with fade
     centered "{size=50}CHAPTER 04 COMPLETE{/size}\n{size=36}45 DAYS LEFT{/size}\n{size=28}The List Keeps Growing."
 
-    # Chapter 5 belum ada. Jangan membuat jump ke label yang belum dibuat.
     jump chapter_5

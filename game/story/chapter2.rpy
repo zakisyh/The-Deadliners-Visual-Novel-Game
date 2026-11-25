@@ -25,10 +25,6 @@ default catatan_progres_dibuat = False
 
 # SECRET ENDING:
 # Menghitung bukti tersembunyi yang dikumpulkan pemain.
-# Chapter 2 menyediakan kesempatan mendapatkan bukti pertama.
-# Total kesempatan pengumpulan bukti sepanjang game = 5.
-# Untuk Secret Ending nanti diperlukan minimal 3 bukti,
-# serta kondisi website yang cukup siap dan stabil.
 default jumlah_bukti_rahasia = 0
 
 

@@ -1,3 +1,6 @@
+# Ada satu menu tambahan pengelolaan waktu: total 16 menu pada chapter ini.
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 # ============================================================
 # THE DEADLINERS — CHAPTER 08: THE LAST THREE DAYS
 # ============================================================
@@ -102,7 +105,7 @@ label ch8_scene_01:
         designer "Bagian admin masih banyak mengandalkan data contoh terpisah."
         coder "Iya. Ini belum bisa dibilang terhubung penuh ke pesanan."
 
-    if fokus_lanjutan_ch5 == "pembayaran" or fokus_integrasi_ch6 == "pembayaran":
+    if fokus_lanjutan_ch5 == "pembayaran" or fokus_integrasi_ch6 == "pembayaran" or prioritas_teknis_lanjutan == "pembayaran":
         designer "Layar pembayaran simulasi masih bisa dibuka."
         coder "Tapi data yang masuk ke situ harus diuji. Jangan cuma cek halamannya muncul."
     else:
@@ -142,7 +145,7 @@ label ch8_scene_01:
     "Luuk menatap daftar error yang baru bertambah."
     "Di luar layar laptop, waktu terus berjalan."
 
-    $ stress_level = min(100, stress_level + 7)
+    $ stress_level = min(100, stress_level + 10)
 
     jump ch8_scene_02
 
@@ -229,10 +232,12 @@ label ch8_scene_02:
             designer "Oke. Kita tandai batasnya."
             "Mereka menyimpan versi uji yang dapat menjalankan satu rute demo secara lebih konsisten."
 
-            $ website_progress = min(100, website_progress + 5)
+            $ website_progress = min(100, website_progress + td_progress(5))
             $ stress_level = max(0, stress_level - 3)
 
         "Perbaiki beberapa sambungan booking, admin, dan simulasi sekaligus.":
+            $ poin_bad += 1
+            $ risiko_demo += 1
             $ pemulihan_ch8 = "fitur_luas"
             coder "Perbaiki beberapa sambungan booking, admin, dan simulasi sekaligus."
             designer "Oke, tapi kita perlu tes ulang semuanya setelah itu."
@@ -258,7 +263,7 @@ label ch8_scene_02:
             coder "Iya. Tapi masih ada risiko alur yang belum kita tes."
             designer "Tulis begitu."
 
-            $ website_progress = min(100, website_progress + 6)
+            $ website_progress = min(100, website_progress + td_progress(6))
             $ stress_level = min(100, stress_level + 2)
 
     "Jane mencatat hasil malam itu sesuai jalur yang dipilih."
@@ -302,6 +307,39 @@ label ch8_scene_02:
 
     "Malam itu mereka tidak menyatakan proyek sudah selamat."
     "Namun, di tengah tekanan, mereka kembali bekerja sebagai tim dan berhenti mengejar semua masalah sekaligus."
+
+    # MENU TAMBAHAN — pengelolaan waktu dan Stress (berpengaruh).
+    "Sebelum beristirahat, mereka memutuskan satu langkah terakhir malam itu."
+    designer "Kita lanjut sedikit atau istirahat dulu?"
+    menu:
+        "Gue istirahat dulu. Besok kita lanjut.":
+            coder "Gue istirahat dulu. Besok kita lanjut."
+            "Jane mengakhiri sesi. Luuk menutup laptop dan beristirahat sebelum kembali bekerja esok hari."
+            $ stress_level = max(0, stress_level - 6)
+
+        "Kita ulang tes di laptop Jane dan perbaiki satu ketergantungan lokal." if stress_level < 65:
+            coder "Kita ulang tes di laptop Jane dan perbaiki satu ketergantungan lokal."
+            "Mereka menemukan satu pengaturan lokal lain, memperbaikinya, dan mengulang jalur yang terdampak di laptop Jane."
+            $ website_progress = min(100, website_progress + td_progress(3))
+            $ risiko_demo = max(0, risiko_demo - 1)
+            $ stress_level = max(0, stress_level - 2)
+
+        "Jane, bantu gue tes satu bagian kecil dulu." if stress_level >= 65:
+            coder "Jane, bantu gue tes satu bagian kecil dulu."
+            designer "Oke. Satu bagian aja, habis itu berhenti."
+            $ stress_level = max(0, stress_level - 5)
+            "Jane membantu mengulang satu tes dan Luuk membetulkan masalah kecil yang mereka temukan."
+            $ website_progress = min(100, website_progress + td_progress(2))
+            $ risiko_demo = max(0, risiko_demo - 1)
+
+        "Kita ubah beberapa pengaturan sekaligus tanpa tes ulang di laptop Jane.":
+            coder "Kita ubah beberapa pengaturan sekaligus tanpa tes ulang di laptop Jane."
+            designer "Tapi kalau nggak dites ulang, masih ada risikonya."
+            "Luuk memperbarui beberapa pengaturan, tetapi tidak sempat menguji seluruh perubahan di laptop Jane."
+            $ website_progress = min(100, website_progress + td_progress(4))
+            $ poin_bad += 2
+            $ risiko_demo += 2
+            $ stress_level = min(100, stress_level + 6)
 
     jump ch8_scene_03
 
@@ -406,7 +444,7 @@ label ch8_scene_03:
                 designer "Sekarang tidak terlihat seperti data museum yang sudah diverifikasi."
                 coder "Bagus."
 
-                $ website_progress = min(100, website_progress + 1)
+                $ website_progress = min(100, website_progress + td_progress(1))
 
             "Jane menguji galeri dengan beberapa ukuran layar yang pernah dipakai sebelumnya."
             designer "Setidaknya tampilan demo bisa dijelaskan sesuai kondisinya."
@@ -498,6 +536,7 @@ label ch8_scene_04:
     # MENU 11 — pilihan penting ketiga.
     menu:
         "Bekukan versi yang sudah diuji, lalu siapkan demo sesuai batasnya.":
+            $ risiko_demo = max(0, risiko_demo - 1)
             $ keputusan_build_ch8 = "bekukan"
             coder "Bekukan versi yang sudah diuji, lalu siapkan demo sesuai batasnya."
             designer "Oke. Jangan ada fitur baru mendadak."
@@ -514,10 +553,12 @@ label ch8_scene_04:
 
             "Mereka menyimpan urutan demo dan daftar keterbatasan tanpa menambahkan perubahan berisiko."
 
-            $ website_progress = min(100, website_progress + 1)
+            $ website_progress = min(100, website_progress + td_progress(1))
             $ stress_level = max(0, stress_level - 3)
 
         "Coba satu paket perbaikan tambahan, lalu tes ulang sebisanya.":
+            $ poin_bad += 2
+            $ risiko_demo += 2
             $ keputusan_build_ch8 = "tambal"
             coder "Coba satu paket perbaikan tambahan, lalu tes ulang sebisanya."
             designer "Oke. Tapi kalau belum teruji, jangan dibawa sebagai fitur pasti."
@@ -534,7 +575,7 @@ label ch8_scene_04:
 
             "Perbaikan tambahan meningkatkan cakupan fungsi yang tersedia, tetapi belum membuktikan kestabilan semua jalur."
 
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = min(100, stress_level + 3)
 
     designer "Oke. Kita catat hasil yang bisa dipakai besok."
@@ -614,14 +655,17 @@ label ch8_scene_05:
 
     $ stress_level = min(100, stress_level + 3)
 
-    # MENU 13 — dialog biasa.
+    # MENU 13 — pilihan koordinasi kelompok (poin Good/True atau netral).
     menu:
         "Besok kita jelaskan hasil kerja yang benar-benar ada.":
+            $ poin_true += 2
             coder "Besok kita jelaskan hasil kerja yang benar-benar ada."
+            coder "Bagian kita berdua tetap jalan, tanpa mengandalkan jawaban Adrian."
             designer "Iya. Jangan menutup kekurangan dengan janji."
             coder "Setuju."
 
         "Kalau Adrian datang, kita tetap harus tahu dia bawa apa.":
+            $ poin_good += 2
             coder "Kalau Adrian datang, kita tetap harus tahu dia bawa apa."
             designer "Benar. Nggak bisa langsung bilang kontribusinya selesai."
             coder "Iya."
@@ -685,7 +729,7 @@ label ch8_scene_05:
     coder "Iya. Gue cek cadangannya sekali, terus tidur."
     designer "Sekali, ya."
     coder "Iya."
-    designer "Besok ketemu sebelum masuk ruangan."
+    designer "Besok kita masuk meeting dari kos masing-masing, ya."
     coder "Sip."
 
     # MENU 15 — dialog penutup biasa.
@@ -711,4 +755,4 @@ label ch8_scene_05:
     scene black with fade
     centered "{size=50}CHAPTER 08 COMPLETE{/size}\n{size=36}1 DAY LEFT{/size}\n{size=28}The Last Three Days."
 
-    return
+    jump chapter_9

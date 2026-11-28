@@ -1,3 +1,5 @@
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 # ============================================================
 # THE DEADLINERS — CHAPTER 03: JUST A FEW MORE THINGS
 # 68 DAYS LEFT -> 60 DAYS LEFT
@@ -466,7 +468,7 @@ label ch3_scene_01:
 
     "Masih 68 hari tersisa."
 
-    $ website_progress = min(100, website_progress + 2)
+    $ website_progress = min(100, website_progress + td_progress(2))
 
     jump ch3_scene_02
 
@@ -932,7 +934,7 @@ label ch3_scene_02:
         "Perhitungan total harga kini bekerja, tetapi validasi data dan konfirmasi pemesanan masih perlu diperbaiki."
 
         # Progres website bertambah 4.
-        $ website_progress = min(100, website_progress + 4)
+        $ website_progress = min(100, website_progress + td_progress(4))
 
     else:
 
@@ -943,7 +945,7 @@ label ch3_scene_02:
         "Alur booking juga masih menunggu pengujian lebih lanjut."
 
         # Progres website bertambah 3.
-        $ website_progress = min(100, website_progress + 3)
+        $ website_progress = min(100, website_progress + td_progress(3))
 
 
     designer "Lumayan hari ini."
@@ -1432,7 +1434,7 @@ label ch3_scene_03:
 
     "Masih 64 hari tersisa."
 
-    $ website_progress = min(100, website_progress + 1)
+    $ website_progress = min(100, website_progress + td_progress(1))
 
     jump ch3_scene_04
 
@@ -1721,7 +1723,7 @@ label ch3_scene_04:
             "Namun, koneksi database, alur pembayaran, dan halaman admin masih belum selesai."
 
             # Progress bertambah 4.
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
 
 
         "Bikin kerangka pembayaran simulasi dulu.":
@@ -1774,7 +1776,7 @@ label ch3_scene_04:
             "Namun, validasi pemesanan, database, dan hubungan antarhalaman masih perlu dibuat."
 
             # Progress bertambah 3.
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
 
 
     # ========================================================
@@ -2438,6 +2440,7 @@ label ch3_scene_05:
     "Jane tertawa."
 
     "Akhirnya mereka memutuskan berhenti bermain."
+    $ stress_level = max(0, stress_level - 5)
 
     "Luuk menutup game, sementara Jane kembali melihat catatan pekerjaannya."
 
@@ -2575,12 +2578,10 @@ label ch3_scene_05:
 
     "60 DAYS LEFT."
 
-    $ website_progress = min(100, website_progress + 1)
-
+    $ website_progress = min(100, website_progress + td_progress(1))
     $ hud_visible = False
 
     scene black with fade
-
     centered "{size=50}CHAPTER 03 COMPLETE{/size}\n{size=36}60 DAYS LEFT{/size}\n{size=28}Just a Few More Things."
 
     jump chapter_4

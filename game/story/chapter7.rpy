@@ -1,3 +1,6 @@
+# Ada satu menu tambahan pengelolaan waktu: total 16 menu pada chapter ini.
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 # ============================================================
 # THE DEADLINERS — CHAPTER 07: THE FINAL CHECKLIST
 # Ren'Py 8.5.3 | H-12 sampai H-4
@@ -245,7 +248,7 @@ label ch7_scene_02:
             coder "Belum. Belum semua kasus gagal, penyimpanan permanen, dan halaman admin kita pastikan."
             designer "Oke. Tulis: alur booking lokal lebih siap diuji."
             "Mereka menyimpan hasil tes tanpa menganggap seluruh sistem telah selesai."
-            $ website_progress = min(100, website_progress + 6)
+            $ website_progress = min(100, website_progress + td_progress(6))
             $ stress_level = max(0, stress_level - 2)
 
         "Utamakan daftar admin, detail pesanan, dan status data uji.":
@@ -280,7 +283,7 @@ label ch7_scene_02:
             designer "Tapi belum berarti semua booking otomatis masuk?"
             coder "Betul. Yang belum terhubung tetap masuk daftar."
             "Halaman admin menjadi lebih bisa didemonstrasikan, tanpa mengklaim integrasi penuh."
-            $ website_progress = min(100, website_progress + 5)
+            $ website_progress = min(100, website_progress + td_progress(5))
             $ stress_level = max(0, stress_level - 2)
 
     "Jane memeriksa pekerjaan yang baru disimpan."
@@ -418,6 +421,7 @@ label ch7_scene_03:
     # MENU 09 — pilihan penting kedua; BUKAN bukti baru.
     menu:
         "Kirim permintaan terakhir yang jelas lewat grup.":
+            $ poin_good += 2
             $ strategi_konten_ch7 = "tenggat"
             coder "Kirim permintaan terakhir yang jelas lewat grup."
             designer "Oke. Kita minta bagian yang sudah ada, bukan cuma jawaban nanti."
@@ -431,6 +435,7 @@ label ch7_scene_03:
             $ stress_level = min(100, stress_level + 2)
 
         "Siapkan galeri demo dengan placeholder yang diberi label jelas.":
+            $ poin_true += 2
             $ strategi_konten_ch7 = "demo"
             coder "Siapkan galeri demo dengan placeholder yang diberi label jelas."
             designer "Oke. Jadi penguji tahu ini contoh tampilan, bukan koleksi asli."
@@ -441,7 +446,7 @@ label ch7_scene_03:
             coder "Iya. Tapi bahan asli tetap belum tersedia."
             designer "Masuk daftar kendala yang harus kita sampaikan."
             "Tampilan galeri demo menjadi lebih jelas, meskipun ini tidak menggantikan pekerjaan Adrian."
-            $ website_progress = min(100, website_progress + 2)
+            $ website_progress = min(100, website_progress + td_progress(2))
             $ stress_level = max(0, stress_level - 1)
 
     "Luuk kembali melihat daftar fitur yang harus diperiksa sebelum latihan demo."
@@ -534,7 +539,7 @@ label ch7_scene_04:
                 "Luuk membetulkan perpindahan tombol dan penyegaran nilai pada ringkasan data contoh."
                 designer "Sekarang bagian ini nggak loncat ke halaman yang salah."
                 coder "Iya. Tapi penyimpanan pesanan penuh tetap belum selesai."
-            if fokus_teknis_ch6 == "validasi_error" or prioritas_teknis_lanjutan == "validasi":
+            if fokus_teknis_ch6 == "validasi_error" or prioritas_teknis_lanjutan == "validasi" or fokus_pengerjaan_ch4 == "form_booking" or prioritas_integrasi_ch7 == "booking":
                 designer "Pesan validasinya juga gue coba ulang."
                 coder "Oke. Catat kalau ada kondisi yang belum ditangani."
             else:
@@ -542,7 +547,7 @@ label ch7_scene_04:
                 coder "Iya. Kita catat sebagai pekerjaan berikutnya, jangan dianggap sudah aman."
             "Mereka mengulangi rangkaian yang sama dan menyimpan hasil tes yang berhasil serta yang belum."
             "Satu bug penghambat pada jalur pengunjung berkurang, tetapi alur produksi lengkap belum dijamin stabil."
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 2)
 
         "Uji pengelolaan pesanan dan halaman konfirmasi simulasi.":
@@ -568,7 +573,7 @@ label ch7_scene_04:
                 coder "Iya. Jadi hari ini kita nggak menganggapnya siap diuji. Kita fokus pada data admin contoh."
             "Mereka memperbaiki satu masalah pada halaman lanjutan dan menyimpan hasil uji dengan status yang jelas."
             "Alur pengelolaan pada data contoh menjadi lebih mudah didemonstrasikan, tanpa menjadikannya sistem produksi lengkap."
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
             $ stress_level = max(0, stress_level - 2)
 
     designer "Hari ini ada yang berhasil kita beresin."
@@ -599,6 +604,39 @@ label ch7_scene_04:
     "Luuk menyimpan perubahan kode dan catatan pengujian."
     "Jane menyimpan rancangan serta status tiap langkah yang berhasil dan belum berhasil."
     "Enam hari tersisa. Mereka mulai menyiapkan demonstrasi yang bisa dijalankan berdasarkan kondisi website yang sebenarnya."
+    # MENU TAMBAHAN — pengelolaan waktu dan Stress (berpengaruh).
+    "Ada kesempatan menyiapkan satu bagian sebelum latihan terakhir."
+    designer "Kita lanjut sedikit atau istirahat dulu?"
+    menu:
+        "Istirahat dan tidur cukup malam ini.":
+            coder "Istirahat dan tidur cukup malam ini."
+            "Luuk dan Jane menyimpan pekerjaan. Malam itu keduanya berhenti lebih awal dan tidur cukup."
+            $ stress_level = max(0, stress_level - 6)
+
+        "Kita uji ulang navigasi dan simpan versi cadangan yang bisa dibuka." if stress_level < 65:
+            coder "Kita uji ulang navigasi dan simpan versi cadangan yang bisa dibuka."
+            "Mereka memperbaiki satu tautan kembali, menguji ulang jalur tersebut, lalu menyimpan salinan yang bisa dibuka."
+            $ website_progress = min(100, website_progress + td_progress(3))
+            $ risiko_demo = max(0, risiko_demo - 1)
+            $ stress_level = max(0, stress_level - 2)
+
+        "Jane, bantu gue tes satu bagian kecil dulu." if stress_level >= 65:
+            coder "Jane, bantu gue tes satu bagian kecil dulu."
+            designer "Oke. Satu bagian aja, habis itu berhenti."
+            $ stress_level = max(0, stress_level - 5)
+            "Jane membantu mengulang satu tes dan Luuk membetulkan masalah kecil yang mereka temukan."
+            $ website_progress = min(100, website_progress + td_progress(2))
+            $ risiko_demo = max(0, risiko_demo - 1)
+
+        "Kita tambahkan perbaikan cepat tanpa memeriksa ulang versi cadangan.":
+            coder "Kita tambahkan perbaikan cepat tanpa memeriksa ulang versi cadangan."
+            designer "Tapi kalau nggak dites ulang, masih ada risikonya."
+            "Luuk mengubah beberapa bagian navigasi tetapi belum menguji ulang salinan cadangannya."
+            $ website_progress = min(100, website_progress + td_progress(4))
+            $ poin_bad += 2
+            $ risiko_demo += 2
+            $ stress_level = min(100, stress_level + 6)
+
     jump ch7_scene_05
 
 

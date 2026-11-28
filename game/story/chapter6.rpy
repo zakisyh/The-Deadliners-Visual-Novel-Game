@@ -1,3 +1,6 @@
+# Ada satu menu tambahan pengelolaan waktu: total 16 menu pada chapter ini.
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 
 # ============================================================
 # THE DEADLINERS — CHAPTER 06: THE PARTS BETWEEN
@@ -463,7 +466,7 @@ label ch6_scene_02:
             designer "Oke, gue catat."
 
             # Progress +5, Stress -2.
-            $ website_progress = min(100, website_progress + 5)
+            $ website_progress = min(100, website_progress + td_progress(5))
             $ stress_level = max(0, stress_level - 2)
 
 
@@ -525,7 +528,7 @@ label ch6_scene_02:
             # Hasil pekerjaan jalur kedua.
 
             # Progress +4, Stress -2.
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 2)
 
 
@@ -734,6 +737,7 @@ label ch6_scene_03:
     menu:
 
         "Gue nggak mau kita berhenti cuma karena folder itu kosong.":
+            $ poin_true += 1
 
             coder "Gue nggak mau kita berhenti cuma karena folder itu kosong."
 
@@ -1181,7 +1185,7 @@ label ch6_scene_04:
 
 
             # Hasil pilihan admin.
-            $ website_progress = min(100, website_progress + 5)
+            $ website_progress = min(100, website_progress + td_progress(5))
             $ stress_level = max(0, stress_level - 2)
 
 
@@ -1256,7 +1260,7 @@ label ch6_scene_04:
 
 
             # Hasil pilihan pembayaran.
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 2)
 
 
@@ -1323,6 +1327,39 @@ label ch6_scene_04:
     "Luuk dan Jane menyimpan perubahan, lalu memperbarui daftar pengujian mereka."
 
     "Website menjadi lebih terhubung daripada sebelumnya, tetapi belum seluruh fungsi menyatu dan belum semua masalah selesai."
+
+    # MENU TAMBAHAN — pengelolaan waktu dan Stress (berpengaruh).
+    "Ada satu sesi kecil sebelum mereka pulang."
+    designer "Kita lanjut sedikit atau istirahat dulu?"
+    menu:
+        "Makan dulu, baru lanjut besok.":
+            coder "Makan dulu, baru lanjut besok."
+            "Mereka membeli makan, membicarakan tugas kuliah lain, dan mengakhiri pekerjaan hari itu."
+            $ stress_level = max(0, stress_level - 3)
+
+        "Kita perbaiki cara halaman menampilkan status kosong dan gagal." if stress_level < 65:
+            coder "Kita perbaiki cara halaman menampilkan status kosong dan gagal."
+            "Luuk memperbaiki pesan data kosong dan Jane mengulang dua skenario gagal dengan data contoh."
+            $ website_progress = min(100, website_progress + td_progress(3))
+            $ risiko_demo = max(0, risiko_demo - 1)
+            $ stress_level = max(0, stress_level - 2)
+
+        "Jane, bantu gue tes satu bagian kecil dulu." if stress_level >= 65:
+            coder "Jane, bantu gue tes satu bagian kecil dulu."
+            designer "Oke. Satu bagian aja, habis itu berhenti."
+            $ stress_level = max(0, stress_level - 5)
+            "Jane membantu mengulang satu tes dan Luuk membetulkan masalah kecil yang mereka temukan."
+            $ website_progress = min(100, website_progress + td_progress(2))
+            $ risiko_demo = max(0, risiko_demo - 1)
+
+        "Kita tambahkan beberapa perubahan status tanpa mengulang skenario gagal.":
+            coder "Kita tambahkan beberapa perubahan status tanpa mengulang skenario gagal."
+            designer "Tapi kalau nggak dites ulang, masih ada risikonya."
+            "Luuk menambah tampilan status, tetapi beberapa skenario gagal belum sempat diperiksa."
+            $ website_progress = min(100, website_progress + td_progress(4))
+            $ poin_bad += 2
+            $ risiko_demo += 2
+            $ stress_level = min(100, stress_level + 6)
 
     jump ch6_scene_05
 

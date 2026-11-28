@@ -1,10 +1,5 @@
-
 # ============================================================
 # THE DEADLINERS — CHAPTER 02: WE STILL HAVE TIME
-# ============================================================
-
-
-# ============================================================
 # VARIABEL PILIHAN PEMAIN
 # ============================================================
 
@@ -49,7 +44,7 @@ label chapter_2:
 # ============================================================
 # SCENE 01 — ONE WEEK LATER
 # 81 DAYS LEFT
-#
+
 # Jumlah menu: 3
 # Menu 01, 02, dan 03 hanya memengaruhi dialog.
 # ============================================================
@@ -100,10 +95,7 @@ label ch2_scene_01:
 
     # ========================================================
     # MENU 01 — CANDAAN SOAL KETEPATAN WAKTU LUUK
-    #
     # Tiga opsi.
-    # Hanya mengubah dialog.
-    # Tidak mengubah statistik atau Secret Ending.
     # ========================================================
 
     menu:
@@ -262,9 +254,7 @@ label ch2_scene_01:
 
     # ========================================================
     # MENU 02 — CANDAAN TAMPILAN WEBSITE LUUK
-    #
     # Tiga opsi.
-    # Hanya mengubah dialog.
     # ========================================================
 
     menu:
@@ -393,9 +383,7 @@ label ch2_scene_01:
 
     # ========================================================
     # MENU 03 — CANDAAN TUGAS KULIAH
-    #
     # Dua opsi.
-    # Hanya mengubah dialog.
     # ========================================================
 
     menu:
@@ -443,7 +431,7 @@ label ch2_scene_01:
     "Namun, keduanya merasa proyek mereka sudah mulai bergerak."
 
     # Website Progress bertambah 3 setelah Scene 01.
-    $ website_progress = min(100, website_progress + 3)
+    $ website_progress = min(100, website_progress + td_progress(3))
 
     jump ch2_scene_02
 
@@ -560,7 +548,7 @@ label ch2_scene_02:
             $ form_tiket_dikerjakan_dulu = True
 
             # Kemajuan website bertambah 3.
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
 
             # Sedikit menambah stres.
             $ stress_level = min(100, stress_level + 2)
@@ -601,12 +589,13 @@ label ch2_scene_02:
 
 
         "Oke, satu match dulu.":
+            $ poin_bad += 2
 
             # Luuk memilih main dahulu.
             $ form_tiket_dikerjakan_dulu = False
 
             # Kemajuan website hanya bertambah 1.
-            $ website_progress = min(100, website_progress + 1)
+            $ website_progress = min(100, website_progress + td_progress(1))
 
             "Luuk (chat): Oke, satu match dulu."
 
@@ -641,6 +630,7 @@ label ch2_scene_02:
             coder "Yaudah."
 
             "Setelah beberapa pertandingan, mereka akhirnya berhenti."
+            $ stress_level = min(100, stress_level + 3)
 
             designer "Oke. Gue mau lanjut desain bentar."
 
@@ -1064,7 +1054,7 @@ label ch2_scene_03:
             # Pemain memilih mengutamakan fungsi website.
             $ prioritas_pengerjaan_website = "fungsi"
 
-            $ website_progress = min(100, website_progress + 2)
+            $ website_progress = min(100, website_progress + td_progress(2))
 
             coder "Alur booking-nya kita bikin jalan dulu."
 
@@ -1104,7 +1094,7 @@ label ch2_scene_03:
             # Pemain memilih mengutamakan desain website.
             $ prioritas_pengerjaan_website = "desain"
 
-            $ website_progress = min(100, website_progress + 2)
+            $ website_progress = min(100, website_progress + td_progress(2))
 
             coder "Kita samain tampilannya dulu sama desain lo."
 
@@ -1281,7 +1271,7 @@ label ch2_scene_03:
 
     "Sepertinya, hari ini belum cukup melelahkan untuk membuat mereka melewatkan satu pertandingan."
 
-    $ website_progress = min(100, website_progress + 3)
+    $ website_progress = min(100, website_progress + td_progress(3))
 
     jump ch2_scene_04
 
@@ -1748,7 +1738,7 @@ label ch2_scene_04:
 
     "Belum ada yang menyangka bahwa bagian tersebut pada akhirnya harus mereka kerjakan sendiri."
 
-    $ website_progress = min(100, website_progress + 1)
+    $ website_progress = min(100, website_progress + td_progress(1))
 
     jump ch2_scene_05
 
@@ -2015,7 +2005,7 @@ label ch2_scene_05:
     "Setelah beberapa waktu, mereka berhenti bermain."
 
     # Luuk merasa lebih santai setelah bermain bersama Jane.
-    $ stress_level = max(0, stress_level - 2)
+    $ stress_level = max(0, stress_level - 5)
 
     "Luuk kembali membuka folder Museum Arunika."
 

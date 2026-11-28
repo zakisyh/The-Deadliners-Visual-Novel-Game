@@ -1,5 +1,6 @@
 # ============================================================
 # CHAPTER 09 — THE PRESENTATION | H-0
+# Membaca pilihan lama, bukan memberi pemain menu pemilihan ending.
 # Hanya persiapan terakhir yang menambah progress atau mengurangi Stress.
 # ============================================================
 label chapter_9:

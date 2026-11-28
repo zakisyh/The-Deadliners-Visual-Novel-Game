@@ -1,3 +1,6 @@
+# Ada satu menu tambahan pengelolaan waktu: total 16 menu pada chapter ini.
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 # ============================================================
 # THE DEADLINERS — CHAPTER 05: PIECES THAT DON'T FIT
 # H-42 -> H-30 | 5 scene | 15 menu pilihan
@@ -286,7 +289,7 @@ label ch5_scene_02:
             designer "Jadi pengunjung udah bisa lihat ringkasan?"
             coder "Bisa dalam pengujian ini. Belum bisa dibilang sistem booking lengkap."
             designer "Siap."
-            $ website_progress = min(100, website_progress + 5)
+            $ website_progress = min(100, website_progress + td_progress(5))
             $ stress_level = max(0, stress_level - 2)
 
         "Lanjutkan daftar pemesanan di halaman admin dulu.":
@@ -324,7 +327,7 @@ label ch5_scene_02:
             designer "Sekarang admin-nya udah lebih jelas."
             coder "Iya. Tapi integrasi datanya tetap perlu kita kerjain."
             designer "Catat."
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 2)
 
     "Jane melihat hasil pekerjaan di layar."
@@ -692,7 +695,7 @@ label ch5_scene_04:
             "Alur pembayaran simulasi menjadi lebih jelas, tetapi belum terhubung penuh dengan seluruh sistem booking dan admin."
             designer "Lumayan. Sekarang urutan halamannya lebih masuk akal."
             coder "Iya. Tinggal nanti semua datanya disatukan."
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 2)
 
         "Uji dan rapikan galeri di berbagai ukuran layar.":
@@ -723,7 +726,7 @@ label ch5_scene_04:
             designer "Siap."
             "Tampilan galeri pada beberapa ukuran layar menjadi lebih konsisten."
             "Namun, seluruh konten koleksi masih menunggu bahan sebenarnya."
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
             $ stress_level = max(0, stress_level - 2)
 
     "Menjelang sore, keduanya menutup halaman pengujian."
@@ -759,6 +762,39 @@ label ch5_scene_04:
 
     "Mereka mengakhiri sesi kerja dan menyimpan semua hasil percobaan."
     "Beberapa bagian website memang membaik, tetapi setiap perbaikan memperlihatkan pekerjaan lain yang belum terselesaikan."
+    # MENU TAMBAHAN — pengelolaan waktu dan Stress (berpengaruh).
+    "Masih ada waktu sebelum mereka menutup laptop."
+    designer "Kita lanjut sedikit atau istirahat dulu?"
+    menu:
+        "Main Marvel dua match aja, habis itu berhenti.":
+            coder "Main Marvel dua match aja, habis itu berhenti."
+            "Setelah menyimpan pekerjaan, mereka bermain dua pertandingan lewat voice call pada malam hari, lalu berhenti sesuai kesepakatan."
+            $ stress_level = max(0, stress_level - 5)
+
+        "Kita rapikan tampilan form di layar kecil dan uji kembali." if stress_level < 65:
+            coder "Kita rapikan tampilan form di layar kecil dan uji kembali."
+            "Jane menemukan tombol yang tertutup pada layar kecil; Luuk membetulkan layout dan mereka menguji ulang."
+            $ website_progress = min(100, website_progress + td_progress(3))
+            $ risiko_demo = max(0, risiko_demo - 1)
+            $ stress_level = max(0, stress_level - 2)
+
+        "Jane, bantu gue tes satu bagian kecil dulu." if stress_level >= 65:
+            coder "Jane, bantu gue tes satu bagian kecil dulu."
+            designer "Oke. Satu bagian aja, habis itu berhenti."
+            $ stress_level = max(0, stress_level - 5)
+            "Jane membantu mengulang satu tes dan Luuk membetulkan masalah kecil yang mereka temukan."
+            $ website_progress = min(100, website_progress + td_progress(2))
+            $ risiko_demo = max(0, risiko_demo - 1)
+
+        "Kita percepat perubahan tampilan form tanpa tes semua ukuran.":
+            coder "Kita percepat perubahan tampilan form tanpa tes semua ukuran."
+            designer "Tapi kalau nggak dites ulang, masih ada risikonya."
+            "Mereka merapikan lebih banyak elemen form, tetapi melewatkan tes ulang ukuran layar yang lain."
+            $ website_progress = min(100, website_progress + td_progress(4))
+            $ poin_bad += 2
+            $ risiko_demo += 2
+            $ stress_level = min(100, stress_level + 6)
+
     jump ch5_scene_05
 
 
@@ -956,15 +992,18 @@ label ch5_scene_05:
     coder "Iya. Kalau udah selesai, baru lihat lagi."
     designer "Deal."
 
-    # MENU 15 — penutup, pilihan dialog biasa.
+    # MENU 15 — pilihan koordinasi kelompok (poin Good/True).
     menu:
         "Besok kita periksa bagian yang belum nyambung.":
+            $ poin_true += 2
             coder "Besok kita periksa bagian yang belum nyambung."
+            coder "Kita atur target kita berdua tanpa bergantung pada kepastian dari Adrian."
             designer "Oke. Gue siapin daftar desain yang harus dicek."
             coder "Gue cek bagian kode dan datanya."
             designer "Sip."
 
         "Kita jangan lupa minta kepastian bahan dari Adrian.":
+            $ poin_good += 2
             coder "Kita jangan lupa minta kepastian bahan dari Adrian."
             designer "Iya. Tapi besok sekalian kita atur langkah kalau belum ada."
             coder "Setuju."

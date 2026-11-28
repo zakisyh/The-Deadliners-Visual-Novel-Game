@@ -1,3 +1,6 @@
+# Ada satu menu tambahan pengelolaan waktu: total 16 menu pada chapter ini.
+# REVISION FINAL: sistem Stress, progress, dan ending.
+# Keterangan menu lama tetap sebagai riwayat rancangan; kode aktif menentukan efek.
 # ============================================================
 # THE DEADLINERS — CHAPTER 04: THE LIST KEEPS GROWING
 # H-56 -> H-45 | 5 scene | 15 menu pilihan
@@ -403,7 +406,7 @@ label ch4_scene_02:
             coder "Nah."
 
             # Yang selesai baru struktur dasar, bukan sistem database lengkap.
-            $ website_progress = min(100, website_progress + 4)
+            $ website_progress = min(100, website_progress + td_progress(4))
             $ stress_level = max(0, stress_level - 1)
 
         "Kita bereskan bagian form booking yang tertunda dulu.":
@@ -461,7 +464,7 @@ label ch4_scene_02:
             coder "Lebih aman buat tes. Belum buat dipakai beneran."
             designer "Iya, gue tahu."
 
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
             $ stress_level = max(0, stress_level - 1)
 
     "Beberapa saat kemudian, Jane mencoba mengisi data pengunjung percobaan."
@@ -633,6 +636,7 @@ label ch4_scene_03:
     # MENU 07 — tanggapan Luuk tentang Adrian (3 opsi, dialog saja).
     menu:
         "Mungkin kita perlu jelasin targetnya lagi.":
+            $ poin_good += 2
             coder "Mungkin kita perlu jelasin targetnya lagi."
             designer "Iya, sih."
             coder "Bukan cuma nanya udah selesai atau belum."
@@ -640,6 +644,7 @@ label ch4_scene_03:
             coder "Iya. Biar nggak ada yang bingung."
 
         "Kita kerjain bagian lain dulu.":
+            $ poin_true += 2
             coder "Kita kerjain bagian lain dulu."
             designer "Sambil nunggu?"
             coder "Iya. Yang nggak tergantung bahan museum."
@@ -995,7 +1000,7 @@ label ch4_scene_04:
             designer "Berarti nanti nggak nebak-nebak lagi."
             coder "Betul."
 
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
             $ stress_level = max(0, stress_level - 2)
 
         "Siapkan kerangka halaman admin dulu.":
@@ -1041,7 +1046,7 @@ label ch4_scene_04:
             designer "Tinggal nanti disambung sama booking."
             coder "Nah, itu bagian berikutnya."
 
-            $ website_progress = min(100, website_progress + 3)
+            $ website_progress = min(100, website_progress + td_progress(3))
             $ stress_level = max(0, stress_level - 2)
 
     "Menjelang sore, keduanya berhenti bekerja."
@@ -1095,6 +1100,39 @@ label ch4_scene_04:
     "Beberapa fungsi sudah mulai berjalan."
     "Tetapi belum semuanya saling terhubung."
     "Dan bahan koleksi yang menjadi tanggung jawab Adrian masih belum tersedia."
+    # MENU TAMBAHAN — pengelolaan waktu dan Stress (berpengaruh).
+    "Masih ada sedikit waktu sebelum sesi berakhir."
+    designer "Kita lanjut sedikit atau istirahat dulu?"
+    menu:
+        "Makan es krim dulu, yuk.":
+            coder "Makan es krim dulu, yuk."
+            "Luuk dan Jane membeli es krim di warung dekat kontrakan, lalu mengobrol tentang hal lain."
+            $ stress_level = max(0, stress_level - 4)
+
+        "Kita periksa tautan beranda, galeri, dan booking." if stress_level < 65:
+            coder "Kita periksa tautan beranda, galeri, dan booking."
+            "Keduanya memperbaiki tujuan dua tautan dan mengulang navigasi dari beranda."
+            $ website_progress = min(100, website_progress + td_progress(3))
+            $ risiko_demo = max(0, risiko_demo - 1)
+            $ stress_level = max(0, stress_level - 2)
+
+        "Jane, bantu gue tes satu bagian kecil dulu." if stress_level >= 65:
+            coder "Jane, bantu gue tes satu bagian kecil dulu."
+            designer "Oke. Satu bagian aja, habis itu berhenti."
+            $ stress_level = max(0, stress_level - 5)
+            "Jane membantu mengulang satu tes dan Luuk membetulkan masalah kecil yang mereka temukan."
+            $ website_progress = min(100, website_progress + td_progress(2))
+            $ risiko_demo = max(0, risiko_demo - 1)
+
+        "Kita rapikan beberapa tautan tanpa tes ulang.":
+            coder "Kita rapikan beberapa tautan tanpa tes ulang."
+            designer "Tapi kalau nggak dites ulang, masih ada risikonya."
+            "Luuk mengubah beberapa tujuan tautan sekaligus. Mereka menyimpan perubahan tanpa mengulang seluruh navigasi."
+            $ website_progress = min(100, website_progress + td_progress(4))
+            $ poin_bad += 2
+            $ risiko_demo += 2
+            $ stress_level = min(100, stress_level + 6)
+
     "47 DAYS LEFT."
     jump ch4_scene_05
 

@@ -1,7 +1,6 @@
 # =====================================================================
 # CHAPTER 1 — THE FIRST MEETING
 # 88 DAYS LEFT | Dua hari setelah prolog
-# Keempat pilihan hanya memengaruhi dialog, bukan ending.
 # =====================================================================
 
 label chapter_1:
@@ -17,7 +16,6 @@ label chapter_1:
 # =====================================================================
 # SCENE 01 — TWO DAYS LATER
 # Lokasi cerita: area duduk dekat perpustakaan kampus, BUKAN kelas.
-# Background hitam hanya placeholder karena aset lokasi belum ada.
 # =====================================================================
 
 label ch1_scene_01:
@@ -245,7 +243,6 @@ label ch1_scene_03:
 # =====================================================================
 # SCENE 04 — SOMETHING FEELS OFF
 # Lokasi: masih di area duduk dekat perpustakaan
-# Tidak ada pilihan. Anomaly tetap pendiam dan wajar.
 # =====================================================================
 
 label ch1_scene_04:
@@ -286,7 +283,7 @@ label ch1_scene_04:
     pause 0.6
     hide anomaly
 
-    $ website_progress = min(100, website_progress + 10)           
+    $ website_progress = min(100, website_progress + td_progress(10))           
 
     "Tinggal The Coder dan The Designer di tempat duduk itu."
 
@@ -356,6 +353,7 @@ label ch1_scene_05:
             designer "Oke. Semoga lancar."
 
         "Kita saling ingetin progres di grup.":
+            $ poin_good += 1
             coder "Kita saling ingetin progres di grup aja."
             designer "Boleh. Jadi kalau ada yang bingung bisa langsung ngomong."
             coder "Buat semuanya, termasuk gue sama lo."
